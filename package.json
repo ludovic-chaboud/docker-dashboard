@@ -1,0 +1,21 @@
+{
+	"name": "Ludovic Chaboud",
+	"email": "ludo1026@gmail.com",
+	"description": "Docker Dashboard",
+	"main": "index.js",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+    "url": "https://github.com/ludo1026/docker-dashboard.git"
+  },
+	"dependencies": {
+		"express": "*",
+		"dockerode": "*",
+		"socket.io": "*",
+		"docker-events": "*",
+		"docker-compose-remote-api": "*"
+	},
+	"scripts": {
+		"dev": "nodemon -L"
+	}
+}
