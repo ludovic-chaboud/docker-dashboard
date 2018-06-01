@@ -10,13 +10,14 @@ const emit = (channel, data) => {
   }
 }
 const DockerCompose = require("./index/dockercompose");
-const dockerCompose = DockerCompose({cwd: '/home/linux/shared/workspace/app1'});
 
 const path = require('path');
-const baseDir = path.join('..');
+const baseDir = path.normalize(path.join(__dirname, '..'));
 const workspaceDir = path.join(baseDir, 'workspace');
 const projectName = 'app1';
 const projectDir = path.join(workspaceDir, projectName);
+console.log('poject directory:', projectDir);
+const dockerCompose = DockerCompose({cwd: projectDir});
 
 const __ = {
   app, docker, dockerCompose, io, ioClients, emit, workspaceDir, projectName, projectDir
