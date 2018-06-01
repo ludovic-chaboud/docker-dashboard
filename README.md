@@ -2,13 +2,13 @@
 
 Dashboard for Docker
 
-![Dashboard](https://github.com/ludo1026/docker-dashboard/blob/master/doc/images/dashboard.jpg)
-
 Use Docker Engine API : [https://docs.docker.com/engine/api/v1.37/](https://docs.docker.com/engine/api/v1.37/)
 
-Based on node.js and vue.js / socket.io.
+![Dashboard](https://github.com/ludo1026/docker-dashboard/blob/master/doc/images/dashboard.jpg)
 
 ## Install
+
+Based on node.js and vue.js / socket.io.
 
 * npm install
 * npm run dev
