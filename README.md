@@ -10,8 +10,14 @@ Use Docker Engine API : [https://docs.docker.com/engine/api/v1.37/](https://docs
 
 Based on node.js and vue.js / socket.io.
 
-* npm install
-* npm run dev
+* Install docker, docker-compose :
+  * On Ubuntu : [install_docker.sh](https://github.com/ludovic-chaboud/docker-dashboard/blob/master/install_linux/ubuntu/install_docker.sh)
+* Install node.js, npm
+  * On Ubuntu : [install_nodejs.sh](https://github.com/ludovic-chaboud/docker-dashboard/blob/master/install_linux/ubuntu/install_nodejs.sh)
+* Checkout this project
+* Execute:
+  * npm install
+  * npm run dev
 
 => http://localhost:3000
 
