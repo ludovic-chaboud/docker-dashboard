@@ -4,7 +4,7 @@ Dashboard for Docker
 
 Use Docker Engine API : [https://docs.docker.com/engine/api/v1.37/](https://docs.docker.com/engine/api/v1.37/)
 
-![Dashboard](https://github.com/ludo1026/docker-dashboard/blob/master/doc/images/dashboard.jpg)
+![Dashboard](https://github.com/ludovic-chaboud/docker-dashboard/blob/master/doc/images/dashboard.jpg)
 
 ## Install
 
