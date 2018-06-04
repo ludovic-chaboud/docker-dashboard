@@ -10,7 +10,6 @@ function loadContainers(__) {
         if(err) {
           reject(err)
         } else {
-          console.log('containers')
           resolve(containers)
         }
       });

@@ -1,26 +1,22 @@
 <template>
   <div>
-    <h5>Volumes</h5>
+    <h5>Networks</h5>
     <div class="card">
       <div class="row row-head">
         <div class="col-xs-3 cell">Name</div>
-        <div class="col-xs-6 cell">Labels</div>
+        <div class="col-xs-3 cell">Id</div>
+        <div class="col-xs-3 cell">Driver</div>
         <div class="col-xs-3 cell">Actions</div>
       </div>
       <div class="row row-body"
-        v-for="volume in volumes"
-        v-bind:key="volume.Name">
-        <div class="col-xs-3 cell cell-head">{{volume.Name}}</div>
-        <div class="col-xs-6 cell cell-head">
-          <ul>
-            <li v-for="(labelValue, labelName) in volume.Labels" v-bind:key="labelName">
-              {{labelName}}: {{labelValue}}
-            </li>
-          </ul>
-        </div>
+        v-for="network in networks"
+        v-bind:key="network.Id">
+        <div class="col-xs-3 cell cell-head">{{network.Name}}</div>
+        <div class="col-xs-3 cell">{{network.Id | truncate(13,'')}}</div>
+        <div class="col-xs-3 cell">{{network.Driver}}</div>
         <div class="col-xs-3 cell">
           <a href="#" class="btn"
-            v-on:click="remove(volume.Name)">
+            v-on:click="remove(network.Id)">
             <i class="far fa-trash-alt"></i> Remove
           </a>
         </div>
@@ -32,7 +28,7 @@
 <script>
 module.exports = {
   props: [
-    'volumes'
+    'networks'
   ],
   data: function() {
     return {
@@ -40,10 +36,10 @@ module.exports = {
     }
   },
   methods: {
-    remove: function (volumeId) {
-      axios.get(`volumes/`+volumeId+'/remove')
+    remove: function (networkId) {
+      axios.get(`networks/`+networkId+'/remove')
         .then(response => {
-          console.log('volume remove:',response.data);
+          console.log('network remove:',response.data);
         })
         .catch(e => {
           this.errors.push(e);

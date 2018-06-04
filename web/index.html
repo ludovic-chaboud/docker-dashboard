@@ -21,23 +21,24 @@
       .card {
         background-color: white;
         padding: 0 8px;
-        margin: 5px 0;
+        margin: 10px;
         border-radius: 2px;
         box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
         transition: box-shadow 0.28s cubic-bezier(0.4,0,0.2,1);
       }
       h1 {
         font-size: 16px;
+        padding: 10px;
       }
       h5 {
         margin-top: 3px;
-        padding: 5px;
+        padding: 10px;
         font-size: 14px;
         font-weight: 600;
       }
       h6 {
         margin-top: 3px;
-        padding: 5px;
+        padding: 10px;
         font-size: 13px;
         font-weight: 600;
       }
@@ -90,7 +91,7 @@
    <title>Docker Dashboard</title>
   </head>
   <body>
-    <div id="app" class="container">
+    <div id="app" class="container-fluid">
       <page></page>
     </div>
   </body>
@@ -101,7 +102,7 @@
   <script src="vue/utils/truncate.js"></script>
   <script src="vue/utils/replaceTerminalCharacters.js"></script>
   <script>
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect();
     socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
     });
