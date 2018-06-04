@@ -1,5 +1,5 @@
 const DockerEvents = require('docker-events');
-const {loadComposes} = require('../../data/composes');
+const _ = require('lodash');
 
 module.exports = (__) => {
   const {docker, emit} = __;
@@ -10,40 +10,31 @@ module.exports = (__) => {
     emit('docker', 'Connected');
   });
   
+  const emitEvents = _.throttle(
+    getEmitEvents(__),
+    1000
+  );
+
   docker.getEvents({}, function (err, data) {
     if(err){
       console.log(err.message);
     } else {
+      data.on('data', emitEvents);
+      /*
       data.on('data', function (chunk) {
         const txt = JSON.parse(chunk.toString('utf8'));
         emit('docker', txt);
-        
-        docker.listImages({all: true}, function(err, images) {
-          if(err) {
-            console.error(err);
-          } else {
-            emit('images', images);
-          }
-        });
-
-        docker.listContainers({all: true}, function(err, containers) {
-          if(err) {
-            console.error(err);
-          } else {
-            emit('containers', containers);
-          }
-        });
-
-        loadComposes(__)
-          .then((composes) => {
-            emit('composes', composes);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-        
       });
+      */
     } 
   });
-  
+
 };
+
+function getEmitEvents(__) {
+  console.log('getEmitEvents');
+  return function() {
+    console.log('throttle');
+    require('./docker/events')(__);
+  }
+}

@@ -24,7 +24,7 @@ Based on node.js and vue.js / socket.io.
 
 ### docker-compose
 
-* create directory ```../workspace/app1``` from root directory
+* create directory ```../workspace/app1``` from project directory
 * create a ```docker-compose.yml``` file ```../workspace/app1/docker-compose.yml``` :
 ```
 version: '3.5'

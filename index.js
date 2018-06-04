@@ -14,7 +14,7 @@ const DockerCompose = require("./index/dockercompose");
 const path = require('path');
 const baseDir = path.normalize(path.join(__dirname, '..'));
 const workspaceDir = path.join(baseDir, 'workspace');
-const projectName = 'app1';
+const projectName = 'pici';
 const projectDir = path.join(workspaceDir, projectName);
 console.log('poject directory:', projectDir);
 const dockerCompose = DockerCompose({cwd: projectDir});
@@ -28,6 +28,6 @@ require('./index/routes')(__);
 
 app.use(express.static('web'));
 
-server.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+server.listen(2999, function () {
+  console.log('Example app listening on port 2999!')
 });

@@ -3,30 +3,40 @@
     <div class="col-xs-12">
       <h1>Docker</h1>
     </div>
-    <div class="col-xs-12">
-      <composes v-bind:composes="composes"></composes>
-    </div>
-    <div class="col-xs-12">
-      <images v-bind:images="images"></images>
-    </div>
-    <div class="col-xs-12">
-      <containers v-bind:containers="containers"></containers>
-    </div>
-    <div class="col-xs-12">
-      <containers-labels v-bind:containers="containers"></containers-labels>
-    </div>
-    <div class="col-xs-12">
-      <containers-details v-bind:containers="containers"></containers-details>
-    </div>
-    <div class="col-xs-12">
-      <volumes v-bind:volumes="volumes"></volumes>
-    </div>
-    <div class="col-xs-12">
-      <logs v-bind:logs="logs"></logs>
-    </div>
-    <div class="col-xs-12">
-      <events v-bind:events="events"></events>
-    </div>
+    <div class="col-xs-12 col-lg-7">
+      <div class="row">
+        <div class="col-xs-12">
+          <composes v-bind:composes="composes"></composes>
+        </div>
+        <div class="col-xs-12">
+          <images v-bind:images="images"></images>
+        </div>
+        <div class="col-xs-12">
+          <containers v-bind:containers="containers"></containers>
+        </div>
+        <div class="col-xs-12">
+          <networks v-bind:networks="networks"></networks>
+        </div>
+        <div class="col-xs-12">
+          <volumes v-bind:volumes="volumes"></volumes>
+        </div>
+        <div class="col-xs-12">
+          <containers-labels v-bind:containers="containers"></containers-labels>
+        </div>
+        <div class="col-xs-12">
+          <containers-details v-bind:containers="containers"></containers-details>
+        </div>
+      </div>
+    </div>    
+    <div class="col-xs-12 col-lg-5">
+      <div class="row">
+        <div class="col-xs-12">
+          <logs v-bind:logs="logs"></logs>
+        </div>
+        <div class="col-xs-12">
+          <events v-bind:events="events"></events>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -40,6 +50,7 @@ module.exports = {
     events: httpVueLoader('vue/page/events.vue'),
     logs: httpVueLoader('vue/page/logs.vue'),
     composes: httpVueLoader('vue/page/composes.vue'),
+    networks: httpVueLoader('vue/page/networks.vue'),
     volumes: httpVueLoader('vue/page/volumes.vue'),
   },
   data() { 
@@ -49,6 +60,7 @@ module.exports = {
       images: [],
       containers: [],
       composes: [],
+      networks: [],
       volumes: [],
       isConnected: false,
       events: [],
@@ -80,6 +92,22 @@ module.exports = {
     .catch(e => {
       this.errors.push(e);
     });
+    axios.get(`networks`)
+    .then(response => {
+      console.log('networks:',response.data);
+      this.networks = response.data
+    })
+    .catch(e => {
+      this.errors.push(e);
+    });
+    axios.get(`volumes`)
+    .then(response => {
+      console.log('volumes:',response.data);
+      this.volumes = response.data
+    })
+    .catch(e => {
+      this.errors.push(e);
+    });    
     this.$socket = socket;
     socket.on('connect', (data) => {
       this.isConnected = true;
@@ -95,6 +123,9 @@ module.exports = {
     });
     socket.on('composes', (data) => {
       this.composes = data;
+    });
+    socket.on('networks', (data) => {
+      this.networks = data;
     });
     socket.on('volumes', (data) => {
       this.volumes = data;

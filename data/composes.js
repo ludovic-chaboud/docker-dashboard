@@ -36,7 +36,7 @@ function loadComposes(__) {
         for(const container of containers) {
           let found = false;
           for(const name of container.Names) {
-            if(name.indexOf(`/${__.projectName}_${service.name}`) === 0) {
+            if(name.indexOf(`/${__.projectName}_${service.name}_`) === 0) {
               found = true;
             }
           }

@@ -2,13 +2,12 @@ module.exports = (__) => {
   const {app, docker} = __;
   app.get('/volumes', function(req, res) {
     docker.listVolumes({
-        filters: {
-          dangling: true
-        }
-      }, function(err, volumes) {
+      dangling: true
+      }, function(err, data) {
         if(err) {
           res.send(err)
         } else {
+          const volumes = data.Volumes;
           res.send(volumes)
         }
       });
