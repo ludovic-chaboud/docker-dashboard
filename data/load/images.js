@@ -1,8 +1,4 @@
-module.exports = {
-  loadImages
-}
-
-function loadImages(__) {
+module.exports = (__) => {
   const {docker} = __;
   return new Promise((resolve, reject) => {
     docker.listImages({all: true}, function(err, images) {

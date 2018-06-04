@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const {loadComposes} = require('../../data/composes');
+const loadComposes = require('../../data/load/composes');
 
 module.exports = __ => {
   const {dockerCompose, app, emit, projectDir} = __;

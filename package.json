@@ -14,7 +14,8 @@
 		"socket.io": "*",
 		"docker-events": "*",
 		"docker-compose-remote-api": "*",
-		"lodash": "*"
+		"lodash": "*",
+		"q": "*"
 	},
 	"scripts": {
 		"dev": "nodemon -L"

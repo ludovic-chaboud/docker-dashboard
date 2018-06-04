@@ -1,5 +1,6 @@
 const DockerEvents = require('docker-events');
 const _ = require('lodash');
+const load = require('./docker/load');
 
 module.exports = (__) => {
   const {docker, emit} = __;
@@ -10,8 +11,8 @@ module.exports = (__) => {
     emit('docker', 'Connected');
   });
   
-  const emitEvents = _.throttle(
-    getEmitEvents(__),
+  const loadThrottled = _.throttle(
+    () => load(__),
     1000
   );
 
@@ -19,7 +20,7 @@ module.exports = (__) => {
     if(err){
       console.log(err.message);
     } else {
-      data.on('data', emitEvents);
+      data.on('data', loadThrottled);
       /*
       data.on('data', function (chunk) {
         const txt = JSON.parse(chunk.toString('utf8'));
@@ -30,11 +31,3 @@ module.exports = (__) => {
   });
 
 };
-
-function getEmitEvents(__) {
-  console.log('getEmitEvents');
-  return function() {
-    console.log('throttle');
-    require('./docker/events')(__);
-  }
-}
