@@ -3,12 +3,13 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 module.exports = (__) => {
-  const {file} = __;
+  const {dockerComposeFile} = __;
   return new Promise((resolve, reject) => {
-    if(fs.existsSync(file)) {
-      const directory = path.dirname(file);
+    console.log(dockerComposeFile)
+    if(fs.existsSync(dockerComposeFile)) {
+      const directory = path.dirname(dockerComposeFile);
       const name = path.basename(directory);
-      const config = yaml.safeLoad(fs.readFileSync(file, 'utf-8'));
+      const config = yaml.safeLoad(fs.readFileSync(dockerComposeFile, 'utf-8'));
       resolve({
         name,
         config

@@ -11,10 +11,10 @@
         v-bind:key="compose.name">
         <div class="col-xs-3 cell">{{compose.name}}</div>
         <div class="col-xs-9 cell">
-          <a href="#" class="btn" v-on:click="start(compose.name)">
+          <a href="#" class="btn btn-start" v-on:click="start(compose.name)">
             <i class="fas fa-play"></i> Start
           </a>
-          <a href="#" class="btn" v-on:click="stop(compose.name)">
+          <a href="#" class="btn btn-stop" v-on:click="stop(compose.name)">
             <i class="fas fa-stop"></i> Stop
           </a>
           <a href="#" class="btn" v-on:click="remove(compose.name)">
@@ -44,7 +44,9 @@
             <div class="col-xs-3 cell cell-head"><span v-for="name in container.Names" v-bind:key="name">{{name}}</span></div>
             <div class="col-xs-2 cell">{{container.Id | truncate(13,'')}}</div>
             <div class="col-xs-2 cell">{{container.Image}}</div>
-            <div class="col-xs-2 cell">{{container.State}}</div>
+            <div class="col-xs-2 cell">
+              <container-state v-bind:state="container.State" />
+            </div>
             <div class="col-xs-12">
               <div class="row row-head">
                 <div class="col-xs-6"></div>
@@ -70,6 +72,9 @@
 
 <script>
 module.exports = {
+  components: {
+    containerState: httpVueLoader('vue/page/docker/components/container/state.vue'),
+  },
   props: [
     'composes'
   ],

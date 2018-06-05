@@ -12,15 +12,18 @@ const emit = (channel, data) => {
 const DockerCompose = require("./index/dockercompose");
 
 const path = require('path');
-const baseDir = path.normalize(path.join(__dirname, '..'));
-const workspaceDir = path.join(baseDir, 'workspace');
-const projectName = 'pici';
-const projectDir = path.join(workspaceDir, projectName);
-console.log('poject directory:', projectDir);
-const dockerCompose = DockerCompose({cwd: projectDir});
+let dockerComposeFile;
+if(process.env.DOCKER_COMPOSE_FILE) {
+  dockerComposeFile = process.env.DOCKER_COMPOSE_FILE;
+} else {
+  dockerComposeFile = path.normalize(path.join(__dirname, 'sample', 'docker-compose.yml'));
+}
+let dockerComposeDir = path.dirname(dockerComposeFile);
+const dockerCompose = DockerCompose({cwd: dockerComposeDir});
 
 const __ = {
-  app, docker, dockerCompose, io, ioClients, emit, workspaceDir, projectName, projectDir
+  app, io, ioClients, emit,
+  docker, dockerCompose, dockerComposeDir, dockerComposeFile,
 }
 
 require('./index/socketio')(__);

@@ -5,6 +5,7 @@ curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh -o 
 source $HOME/.nvm/nvm.sh
 source ~/.profile
 source ~/.bashrc
+
 nvm ls-remote
 nvm install node --latest-npm --reinstall-packages-from=node
 nvm alias default node

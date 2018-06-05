@@ -24,7 +24,6 @@ module.exports = (__) => {
       __.volumes = results[i++];
       __.composes = results[i++];
       defineLinks(__);
-      //console.log(__);
       resolve(__);
     });
   });

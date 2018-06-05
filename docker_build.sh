@@ -1,0 +1,1 @@
+docker build -t lchaboud/docker-dashboard .
