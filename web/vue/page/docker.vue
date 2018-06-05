@@ -9,10 +9,10 @@
           <composes v-bind:composes="composes"></composes>
         </div>
         <div class="col-xs-12">
-          <images v-bind:images="images"></images>
+          <containers v-bind:containers="containers"></containers>
         </div>
         <div class="col-xs-12">
-          <containers v-bind:containers="containers"></containers>
+          <images v-bind:images="images"></images>
         </div>
         <div class="col-xs-12">
           <networks v-bind:networks="networks"></networks>
