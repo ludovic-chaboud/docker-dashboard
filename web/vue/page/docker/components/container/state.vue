@@ -19,17 +19,18 @@ module.exports = {
 <style>
 .state {
   color: #fff;
-  padding: 3px 10px;
+  display: inline-block;
   font-size: 12px;
   border-color: rgba(27,31,35,0.5);
+  text-align: center;
+  width: 100px;
+  border-radius: 2px;
+
 }
 .running {
   background-color: #34d058;
-  /*background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);*/
 }
 .exited {
-  background-color: #b5202c;
-  /*background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);*/
-  background-image: linear-gradient(-180deg, #de4450 0%, #cb2431 90%);
+  background-color: #d2303d;
 }
 </style>
