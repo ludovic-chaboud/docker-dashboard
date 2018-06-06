@@ -22,6 +22,8 @@
           </a>
         </div>
         <div class="col-xs-12">
+          <br/>
+          <b>Services</b>
           <div class="row row-head">
             <div class="col-xs-3 cell">Service</div>
             <div class="col-xs-3 cell">Container name</div>
@@ -34,13 +36,13 @@
             v-bind:key="service.name">
             <div class="row row-body"
               v-if="service.containers.length == 0">
-              <div class="col-xs-3 cell">{{service.name}}</div>
+              <div class="col-xs-3 cell cell-head">{{service.name}}</div>
             </div>
             <div class="row row-body"
               v-if="service.containers.length > 0"
               v-for="container in service.containers"
               v-bind:key="container.name">
-            <div class="col-xs-3 cell">{{service.name}}</div>
+            <div class="col-xs-3 cell cell-head">{{service.name}}</div>
             <div class="col-xs-3 cell cell-head"><span v-for="name in container.Names" v-bind:key="name">{{name}}</span></div>
             <div class="col-xs-2 cell">{{container.Id | truncate(13,'')}}</div>
             <div class="col-xs-2 cell">{{container.Image}}</div>

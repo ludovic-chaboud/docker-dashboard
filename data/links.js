@@ -1,6 +1,7 @@
+const linkNetworks = require('./links/networks');
 const linkComposes = require('./links/composes');
 
 module.exports = __ => {
-  console.log('links')
+  linkNetworks(__);
   linkComposes(__);
 }

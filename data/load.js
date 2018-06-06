@@ -8,7 +8,6 @@ const defineLinks = require('./links');
 
 module.exports = (__) => {
   return new Promise((resolve, reject) => {
-    console.log('load')
     Q.all([
       loadContainers(__),
       loadImages(__),

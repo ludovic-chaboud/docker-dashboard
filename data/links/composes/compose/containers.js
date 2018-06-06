@@ -4,7 +4,7 @@ module.exports = __ => {
     for(const container of containers) {
       let found = false;
       for(const name of container.Names) {
-        if(isLinkedtoService(compose, service, container)) {
+        if(isLinkedToService(compose, service, container)) {
           found = true;
         }
       }
@@ -15,9 +15,7 @@ module.exports = __ => {
   }
 }
 
-function isLinkedtoService(compose, service, container) {
-  console.log('compose:',compose.name);
-  console.log('service:',service.name);
+function isLinkedToService(compose, service, container) {
   return container.Labels['com.docker.compose.project'] === compose.name
     && container.Labels['com.docker.compose.service'] === service.name
 }

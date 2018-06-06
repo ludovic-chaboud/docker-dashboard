@@ -70,6 +70,19 @@ module.exports = {
     }
   },
   created() {
+    axios.get(`all`)
+    .then(response => {
+      console.log(response.data);
+      this.images = response.data.images;
+      this.containers = response.data.containers;
+      this.networks = response.data.networks;
+      this.volums = response.data.volumes;
+      this.composes = response.data.composes;
+    })
+    .catch(e => {
+      this.errors.push(e);
+    });
+    /*
     axios.get(`images`)
     .then(response => {
       console.log('images:',response.data);
@@ -109,7 +122,8 @@ module.exports = {
     })
     .catch(e => {
       this.errors.push(e);
-    });    
+    });
+    */
     this.$socket = socket;
     socket.on('connect', (data) => {
       this.isConnected = true;
