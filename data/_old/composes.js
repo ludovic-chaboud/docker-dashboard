@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const {loadContainers} = require('./containers');
-const {loadImages} = require('./images');
+const loadContainers = require('./composes/containers');
+const loadImages = require('./composes/images');
 
 module.exports = {
   loadComposes
@@ -29,6 +29,30 @@ function loadComposes(__) {
     }
   }
   compose.services = services;
+  __ = {
+    ...__,
+    compose,
+    services,
+    servicesByNames
+  };
+  return new Promise((resolve, reject) => {
+    return loadContainers(__)
+      .then(() => {
+        return loadImages(__);
+      })
+      /*
+      .then(() => {
+        return loadNetworks(__);
+      })
+      */
+      .then(() => {
+        resolve([compose]);
+      })
+      .catch(e => {
+        reject(e);
+      })
+  })
+  /*
   return loadContainers({...__, compose})
     .then((containers) => {
       __.containers = containers;
@@ -47,6 +71,7 @@ function loadComposes(__) {
       }
       return [compose];
     });
+    */
 }
 
 function getCompose(dir) {

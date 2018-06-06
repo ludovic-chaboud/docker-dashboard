@@ -14,20 +14,22 @@
         v-bind:key="container.Id">
         <div class="col-xs-3 cell cell-head"><span v-for="name in container.Names" v-bind:key="name">{{name}}</span></div>
         <div class="col-xs-2 cell">{{container.Id | truncate(13,'')}}</div>
-        <div class="col-xs-2 cell">{{container.Image}}</div>
-        <div class="col-xs-2 cell">{{container.State}}</div>
+        <div class="col-xs-2 cell">{{container.Image | truncate(25,'')}}</div>
+        <div class="col-xs-2 cell">
+          <container-state v-bind:state="container.State" />
+        </div>
         <div class="col-xs-3 cell">
-          <a href="#" class="btn"
+          <a href="#" class="btn btn-start"
             v-on:click="start(container.Id)"
             v-if="container.State !== 'running'">
             <i class="fas fa-play"></i> Start
           </a>
-          <a href="#" class="btn"
+          <a href="#" class="btn btn-stop"
             v-on:click="stop(container.Id)"
             v-if="container.State === 'running'">
             <i class="fas fa-stop"></i> Stop
           </a>
-          <a href="#" class="btn"
+          <a href="#" class="btn btn-remove"
             v-on:click="remove(container.Id)">
             <i class="far fa-trash-alt"></i> Remove
           </a>
@@ -39,6 +41,9 @@
 
 <script>
 module.exports = {
+  components: {
+    containerState: httpVueLoader('vue/page/docker/components/container/state.vue'),
+  },
   props: [
     'containers'
   ],

@@ -9,13 +9,7 @@
 		"url": "https://github.com/ludo1026/docker-dashboard.git"
 	},
 	"dependencies": {
-		"express": "*",
-		"dockerode": "*",
-		"socket.io": "*",
-		"docker-events": "*",
-		"js-yaml": "*",
-		"lodash": "*",
-		"q": "*"
+		"express": "*"
 	},
 	"scripts": {
 		"start": "node index.js",

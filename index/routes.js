@@ -1,4 +1,5 @@
 module.exports = __ => {
+  require('./routes/all')(__);
   require('./routes/images')(__);
   require('./routes/containers')(__);
   require('./routes/composes')(__);

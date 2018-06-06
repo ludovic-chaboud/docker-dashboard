@@ -1,0 +1,39 @@
+version: '3.5'
+
+services:
+  traefik:
+    image: "sample/traefik:0.1"
+    build:
+      context: traefik
+    volumes:
+      - "/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - sample
+
+  nexus:
+    image: "sample/nexus:0.1"
+    build:
+      context: nexus
+    volumes:
+      - "nexus_data:/nexus-data"
+    ports:
+      - "127.0.0.1::8081"
+      - "5001:5001"
+    labels:
+      - "traefik.port=8081"
+      - "traefik.backend=nexus"
+      - "traefik.frontend.rule=PathPrefix: /nexus"
+      - "traefik.docker.network=proxy"
+    networks:
+      - sample
+
+networks:
+  sample:
+    driver: bridge
+    name: sample
+
+volumes:
+  nexus_data:

@@ -1,0 +1,1 @@
+docker run -p 2999:2999 -v "/run/docker.sock:/var/run/docker.sock" -v "/etc/shared/pici:/workspace/pici" -e DOCKER_COMPOSE_FILE='/workspace/pici/docker-compose.yml' --name docker-dashboard -d lchaboud/docker-dashboard
